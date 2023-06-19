@@ -1,13 +1,27 @@
 fun main() {
     val calculator = Calculator()
 
-    print("Type the first number: ")
-    val numA = readlnOrNull()?.toInt()
+    while (true) {
+        print("\nType the operation (+, -, *, /) or '0' to exit: ")
+        val input = readlnOrNull()
 
-    print("Type the second number: ")
-    val numB = readlnOrNull()?.toInt()
+        if (input.equals("0"))
+            break
 
-    val result = calculator.plus(numA!!, numB!!)
+        print("Type the first number: ")
+        val numA = readlnOrNull()?.toInt()
 
-    print("The result is $result")
+        print("Type the second number: ")
+        val numB = readlnOrNull()?.toInt()
+
+        val result = when (input) {
+            "+" -> calculator.plus(numA!!, numB!!)
+            "-" -> calculator.minus(numA!!, numB!!)
+            "*" -> calculator.times(numA!!, numB!!)
+            "/" -> calculator.div(numA!!, numB!!)
+            else -> null
+        }
+
+        if (result != null) print("The result is $result") else print("Invalid operation")
+    }
 }
